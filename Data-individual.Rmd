@@ -1,0 +1,124 @@
+---
+title: "Data-individual"
+author: Kian Parnis 0107601L
+date: 22nd January 2021
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Queen's Gambit
+
+### (i)
+
+P($W_{1}$) = P($W_{1}$|beginner)P(beginner)+P($W_{1}$|intermediate)P(intermediate)
+           + P($W_{1}$|master)P(master)
+           = $\frac{1}{3}$(0.9+0.5+0.3)=$\frac{17}{30}$
+Probability of Beth winning the first game is $\frac{17}{30}$
+           
+### (ii)           
+
+$W_{1}\cap W_{2}$ = P($W_{1}$,$W_{2}$|beginner)P(beginner) +   P($W_{1}$,$W_{2}$|intermediate)P(intermediate) + 
+                    P($W_{1}$,$W_{2}$|master)P(master) = [ $W_{1}\cap W_{2}$ conditionally independent]
+                    = $\frac{1}{3}$($0.9^{2}+0.5^{2}+0.3^{2}$)= $\frac{23}{60}$
+
+Probability of A given B:
+              
+P($W_{1}$|$W_{2}$) = $\frac{W_{1}\cap W_{2}}{P(W_{1})}$
+                   = $\frac{\frac{23}{60}}{\frac{17}{30}}$
+                    = $\frac{23}{34}$
+Probability of Beth winning the second game is $\frac{23}{34}$                    
+
+           
+### (iii)            
+
+Independent means that the outcome of one game doesn't affect the chance of winning the game after. Conditional Independence means that outcome of one game does not affect the probability of winning in the next. With this said, Conditional Independence is more reasonable here because in general independence, winning the first game can give information about the second game.
+
+## Conditionitis
+
+Given "Conditionitis" effects 0.05% then P(D) = 0.0005 and P($D^{C}$) = 0.9995
+Given screening identity's disease in 90% of cases then P(T|D) = 0.9 and P($T^{C}$|D) = 0.1
+Given generated false positives 1% then P(T|$D^{C}$) = 0.001 and P($T^{C}$|$D^{C}$) = 0.999 
+
+To Find: 
+ 
+(Using Bayas Rule)                    
+P(D|T) = $\frac{P(D)P(T|D)}{P(D)P(T|D)+P(D^{C})P(T|D^{C})}$
+       = $\frac{(0.0005)(0.9)}{(0.0005)(0.9)+(0.9995)(0.001)}$
+       = $\frac{900}{2899}\approx0.31$
+       
+(Using Conditional Probability)       
+P(D|$T^{C}$) = $\frac{P(D \cap T^{C})}{P(T^{C})}$
+             = $\frac{P(D)P(T^{C}|D)}{P(T^{C})}$ 
+             = $\frac{(0.0005)(0.1)}{P(T^{C})}$
+             
+(Using Law of Total Probability)             
+$P(T^{C})$ = $P(D \cap T^{C})+P(D^{C} \cap T^{C})$
+           = $(P(D)P(T^{C}|D)+P(D^{C})P(T^{C}|D^{C})$
+           = (0.0005)(0.1)+(0.9995)(0.999)
+           = 0.9985505
+           $$\therefore P(D|T^{C}) = \frac{(0.0005)(0.1)}{0.9985505}\approx{5.007*10^{-5}} $$
+
+## Hypo-headaches
+
+Given sample size: 400              
+Number of observations: 70                  
+Rejection: p = 14% / 0.14               
+
+### i) 
+
+Parameter of interest in given sample:
+
+Standard Deviation $\sigma$ = $\sqrt{\frac{p(1-p)}{N}}$
+                     = $\sqrt{\frac{(0.14)(1-(0.14))}{400}}$
+                     = 0.0173               
+Where The Standard Deviation is a measure of how spread out numbers are.                     
+
+### ii)  
+
+Null Hypothesis = $H_{0}:p=0.14$                   
+Alternative Hypothesis = $H_{1}:p>0.14$
+
+### iii)
+
+Given that in the problem there is no reference to $\alpha$
+we can assume the most popular value i.e., $\alpha$ = 0.05
+Critical value = +1.645
+
+Sample proportion: $\hat{p} = \frac{x}{N} = \frac{7}{40} = 0.175$
+
+Z-test: $\frac{\hat{p}-p}{\sqrt{\frac{p(1-p)}{N}}} = \frac{0.175-0.14}{0.0173} = 2.023$
+
+$2.023 > 1.645 \therefore$ reject null and accept alternative hypothesis.
+EMA should reject the drug.
+
+## Spam Filters
+
+Given Spam 80% then P(S) = 0.8 and legitimate ($S^{C}$) = 0.2            
+Given 10% of spam has phrase "free credit" then P(F|S) = 0.1              
+Given 1% of non-spam has phrase "free credit" then $P(F|S^{C})$ = 0.01            
+
+### i)
+
+To proof P(S|F) (Given "free credit" the probability of spam) 
+(Using Bayas Rule)
+
+P(S|F) = $\frac{P(S)P(F|S)}{P(S)P(F|S)+P(S^{C})P(F|S^{C})}$
+       = $\frac{(0.8)(0.1)}{(0.8)(0.1)+(0.2)(0.01)}$
+       = $\frac{40}{41}=0.2$
+
+### ii)
+
+To proof $P(L|F_{1},F_{2})$ (Mail is legitimate given both filters are legitimate)
+Given $P(F_{1},F_{2}|L)$ = $P(F_{1},F_{2}|L^{C})$ = 0.9
+(Using Bayas Rule)
+
+$P(L|F_{1},F_{2})$ = $\frac{P(L)P(F_{1},F_{2}|L)}{P(L)P(F_{1},F_{2}|L)+P(L^{C})P(F_{1},F_{2}|L^{C})}$
+                   = $\frac{(0.2)(0.9)}{(0.2)(0.9)+(0.8)(0.9)}$
+                   = 0.2
+
+
